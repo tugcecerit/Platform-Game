@@ -1,5 +1,5 @@
 body {
-    background: url(/pics/outerspace-57.gif) no-repeat;
+    background: url(/pics/outerspace-55.gif) no-repeat;
     background-size: cover;
     width: auto;
     height: auto;
@@ -7,29 +7,76 @@ body {
 
 h3 {
     color: rgb(173, 157, 215);
+    color: #70869d;
+    letter-spacing: .15em;
+    text-shadow: 
+      -1px -1px 1px #efede3, 
+      0px 1px 0 #2e2e2e, 
+      0px 2px 0 #2c2c2c, 
+      0px 3px 0 #2a2a2a, 
+      0px 4px 0 #282828, 
+      0px 5px 0 #262626, 
+      0px 6px 0 #242424, 
+      0px 7px 0 #222, 
+      0px 8px 0 #202020, 
+      0px 9px 0 #1e1e1e, 
+      0px 10px 0 #1c1c1c, 
+      0px 11px 0 #1a1a1a, 
+      0px 12px 0 #181818, 
+      0px 13px 0 #161616, 
+      0px 14px 0 #141414, 
+      0px 15px 0 #121212,
+      2px 20px 5px rgba(0, 0, 0, 0.9),
+      5px 23px 5px rgba(0, 0, 0, 0.3),
+      8px 27px 8px rgba(0, 0, 0, 0.5),
+      8px 28px 35px rgba(0, 0, 0, 0.9);
     font-family: 'Londrina Shadow', cursive;
-    font-size: 80px;
+    font-size: 200px;
     text-align: center;
+    animation: ufoAnimation 3s infinite;
 }
-button {
-    margin: 10px 20px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgb(173, 157, 215);
-    font-family: 'Londrina Shadow', cursive;
-    font-size: 30px;
-    align-items: center;
-    text-align: center;  
-    width: auto;  
-    height: auto;  
+
+#buttons {
+    margin: auto;
+    top: 50%;
 }
-button:hover {
-    background-color: lightslategrey;
-    color: white;
+
+button,
+button::after {
+ padding: 16px 20px;
+ font-size: 18px;
+ background: linear-gradient(45deg, transparent 5%, rgb(63, 53, 124) 5%);
+ border: 0;
+ color: #fff;
+ letter-spacing: 3px;
+ line-height: 1;
+ box-shadow: 6px 0px 0px #00e6f6;
+ outline: transparent;
+ position: relative;
 }
-button:active {
-    background-color: dimgrey;
-    color: white;
+
+button::after {
+ --slice-0: inset(50% 50% 50% 50%);
+ --slice-1: inset(80% -6px 0 0);
+ --slice-2: inset(50% -6px 30% 0);
+ --slice-3: inset(10% -6px 85% 0);
+ --slice-4: inset(40% -6px 43% 0);
+ --slice-5: inset(80% -6px 5% 0);
+ content: "HOVER ME";
+ display: block;
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, rgb(63, 53, 124) 5%);
+ text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+ clip-path: var(--slice-0);
+}
+
+button:hover::after {
+ animation: 1s glitch;
+ animation-timing-function: steps(2, end);
 }
 
 #game {
@@ -44,6 +91,14 @@ button:active {
     overflow: hidden;
     position: relative;
     display: none;
+}
+
+.score {
+    position: fixed;
+    margin: 100px;
+    display: none;
+    font-size: 36px;
+    animation: none;
 }
 
 #char {
@@ -127,7 +182,7 @@ button:active {
 .gameOver {
     margin: auto;
     display: none;
-    height: 600px;
+    height: 300px;
     animation: ufoAnimation 1s infinite;
 }
 
@@ -196,3 +251,66 @@ button:active {
     50% {transform:translateY(10px);}
     100% {transform:translateX(10px);}
 }
+@keyframes startAnimation {
+    0% {transform:translateX(20px);}
+    25% {transform:translateY(-10px);}
+    50% {transform:translateY(20px);}
+    100% {transform:translateX(-10px);}
+}
+
+@keyframes glitch {
+    0% {
+     clip-path: var(--slice-1);
+     transform: translate(-20px, -10px);
+    }
+   
+    10% {
+     clip-path: var(--slice-3);
+     transform: translate(10px, 10px);
+    }
+   
+    20% {
+     clip-path: var(--slice-1);
+     transform: translate(-10px, 10px);
+    }
+   
+    30% {
+     clip-path: var(--slice-3);
+     transform: translate(0px, 5px);
+    }
+   
+    40% {
+     clip-path: var(--slice-2);
+     transform: translate(-5px, 0px);
+    }
+   
+    50% {
+     clip-path: var(--slice-3);
+     transform: translate(5px, 0px);
+    }
+   
+    60% {
+     clip-path: var(--slice-4);
+     transform: translate(5px, 10px);
+    }
+   
+    70% {
+     clip-path: var(--slice-2);
+     transform: translate(-10px, 10px);
+    }
+   
+    80% {
+     clip-path: var(--slice-5);
+     transform: translate(20px, -10px);
+    }
+   
+    90% {
+     clip-path: var(--slice-1);
+     transform: translate(-10px, 0px);
+    }
+   
+    100% {
+     clip-path: var(--slice-1);
+     transform: translate(0);
+    }
+   }

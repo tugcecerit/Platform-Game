@@ -16,12 +16,12 @@
 <link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <h3>SPACE KNIGHT</h3>
-    <h3><button class="start">START</button>
+    <h3 class="score">SCORE: <span id="score"></span></h3>
+    <h3 id="gameName">SPACE KNIGHT</h3>
+    <h3 id="buttons"><button class="start">START</button>
     <button class="htp">HOW TO PLAY</button>
 </h3>
     <div id="game">
-        <h3 class="score">SCORE: <span id="score"></span></h3>
         <div id="char"></div>
         <div id="ufo1"></div>
         <div id="ufo2"></div>
@@ -30,6 +30,7 @@
         <div id="alien"></div>
         <div id="rock"></div>
         <audio id="jump audio" src="/pics/jumpsound.wav"></audio>
+        <audio id="game over" src="/pics/gameover.wav"></audio>
     </div> 
     <img class="gameOver" src="pics/gameover.png">
 </body>
