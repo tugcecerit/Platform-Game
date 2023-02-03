@@ -2,12 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
 let callChar = document.getElementById("char");
 let button1 = document.querySelector('.start');
 let button2 = document.querySelector('.htp');
+let button3 = document.querySelector('.restart');
 let callGame = document.getElementById("game");
 let gameOverPic = document.querySelector(".gameOver");
 let jumpAudio = document.getElementById("jump audio");
 let nameOfTheGame = document.getElementById("gameName")
 let gameOverAudio = document.getElementById("game over")
 let scoreShow = document.querySelector(".score")
+
 
 button1.addEventListener("click", (e) => {
     e.preventDefault();
@@ -19,25 +21,27 @@ button1.addEventListener("click", (e) => {
     gameOverPic.style.display = "none";
     document.body.style.backgroundColor = "black";
     scoreShow.style.display = "block";
+    createUfo();
+    moveUfo();
     gameOver();
     runningScore();
 });
 
-let bottom = 110
 function jump() {
+    charBottom = parseInt(window.getComputedStyle(callChar).getPropertyValue("bottom"));
     let timerUp = setInterval(function() {
-    if(bottom > 300) {
+    if(charBottom > 300) {
     clearInterval(timerUp)
     let timerDown = setInterval(function() {
-        if(bottom < 110) {
+        if(charBottom < 110) {
             clearInterval(timerDown)
-        }
-        bottom -=5
-        callChar.style.bottom = bottom + "px"
+        }     
+        charBottom -=5
+        callChar.style.bottom = charBottom + "px"
     },10)
     }
-    bottom += 30
-    callChar.style.bottom = bottom + "px"
+    charBottom += 30
+    callChar.style.bottom = charBottom + "px"
     },20)
 }
 
@@ -46,6 +50,9 @@ function control(e) {
         jump()
         jumpAudio.play()
         jumpingScore()
+    }
+    if (e.key === (" ")) {
+        createBullet()
     }
 }
 
@@ -66,36 +73,110 @@ function jumpingScore() {
     document.querySelector("#score").innerHTML = score;
 }
 
-let isGameOver = false;
-function gameOver() {
+function shootingScore() {
+    score += 250
+    document.querySelector("#score").innerHTML = score;
+}
 
+    const ufoImages = ["pics/ufo1.png", "pics/ufo2.png"]
+
+    function createUfo() {
+        let createUfos = setInterval(() => {
+        let newUfo = document.createElement("img")
+        let ufoSpriteImage = ufoImages[Math.floor(Math.random() * ufoImages.length)]
+        newUfo.src = ufoSpriteImage
+        newUfo.classList.add("ufo")
+        newUfo.style.left = "1000px"
+        newUfo.style.bottom = `${Math.floor(Math.random() * 200) + 130}px`
+        callGame.appendChild(newUfo)
+        moveUfo(newUfo)
+    },7000)
+    }
+
+    function moveUfo(ufo) {
+        let moveUfoInterval = setInterval(() => {
+            let xPosition = parseInt(window.getComputedStyle(ufo).getPropertyValue("left"))
+            if(xPosition <= -10) {
+                ufo.remove()
+            } else {
+                ufo.style.left = `${xPosition - 10}px`
+            }
+        },50)
+    }
+
+
+    function createBullet() {
+        let bullet = createBulletElement()
+        callGame.appendChild(bullet)
+        moveBullet(bullet)
+    }
+
+    function createBulletElement() {
+        let xPosition = parseInt(window.getComputedStyle(callChar).getPropertyValue("left"))
+        let yPosition = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"))
+        let newBullet = document.createElement("img")
+        newBullet.src = "pics/bullet.png"
+        newBullet.classList.add("bullet")
+        newBullet.style.left = `${xPosition}px`
+        newBullet.style.top = `${yPosition + 50}px`
+        return newBullet
+    }
+
+    function moveBullet(bullet) {
+        let bulletInterval = setInterval(() => {
+            let xPosition = parseInt(bullet.style.left)
+            let ufos = document.getElementsByClassName("ufo")
+
+        for(let i = 0; i < ufos.length; i++) {
+        let ufo = ufos[i] 
+
+        let ufoBound = ufo.getBoundingClientRect()
+        let bulletBound = bullet.getBoundingClientRect()
+
+        if(bulletBound.left >= ufoBound.left && 
+        bulletBound.bottom <= ufoBound.bottom && 
+        bulletBound.right <= ufoBound.right && 
+        bulletBound.top <= ufoBound.top) {
+
+
+        ufo.parentElement.removeChild(ufo);
+        shootingScore();
+    }}
+        if (xPosition >= 1000) {
+            bullet.remove(),
+            clearInterval(bulletInterval)
+        } else {
+            bullet.style.left = `${xPosition + 10}px`
+        }
+    }, 10)
+} 
+
+    let isGameOver = false;
+    function gameOver() {
     let callRock = document.getElementById("rock");
-    let callUfo1 = document.getElementById("ufo1");
-    let callUfo2 = document.getElementById("ufo1");
-    let callUfo3 = document.getElementById("ufo1");
-    let callUfo4 = document.getElementById("ufo1");
-    
+    let callUfo = document.querySelector(".ufo");
+
       setInterval(function () {
-          let charTop = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"));
-          let rockLeft = parseInt(window.getComputedStyle(callRock).getPropertyValue("left"));
-          let ufo1Left = parseInt(window.getComputedStyle(callUfo1).getPropertyValue("left"));
-          let ufo2Left = parseInt(window.getComputedStyle(callUfo2).getPropertyValue("left"));
-          let ufo3Left = parseInt(window.getComputedStyle(callUfo3).getPropertyValue("left"));
-          let ufo4Left = parseInt(window.getComputedStyle(callUfo4).getPropertyValue("left"));
+        let charTop = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"));
+        let rockLeft = parseInt(window.getComputedStyle(callRock).getPropertyValue("left"));
+        let ufoLeft = parseInt(window.getComputedStyle(callUfo).getPropertyValue("left"));
       
-      if(rockLeft < 190 && rockLeft > 10 && charTop >= 350 || ufo1Left < 150 && ufo1Left > 10 && charTop > 100 || ufo2Left < 150 && ufo2Left > 10 && charTop > 100 || ufo3Left < 150 && ufo3Left > 10 && charTop > 100 || ufo4Left < 150 && ufo4Left > 10 && charTop > 100)
+      if(rockLeft < 190 && rockLeft > 10 && charTop >= 350 || ufoLeft < 150 && ufoLeft > 10 && charTop > 100)
         gameOverPic.style.display = "block",
-        gameOverPic.style.textAlign = "center",
         callGame.style.display = "none",
         nameOfTheGame.style.display = "none",
         scoreShow.style.fontSize = "80px",
         scoreShow.style.position = "relative",
         scoreShow.style.textAlign = "center",
+        button3.style.display = "block",
         isGameOver = true,
         gameOverAudio.play()
       },10);
-    }
+    }  
     
+    button3.addEventListener("click",function restart() {
+        window.location.reload()
+    })
 })
 
 

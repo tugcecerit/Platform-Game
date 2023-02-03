@@ -36,56 +36,70 @@ h3 {
     animation: ufoAnimation 3s infinite;
 }
 
+.gameOver {
+    color: #1BFD9C;
+    font-family: 'Londrina Shadow', cursive;
+    font-size: 120px;
+    margin: 200px auto;
+    text-align: center;
+    letter-spacing: 1.1em;
+    position: relative;
+    line-height: 1.5em;
+    display: none;
+    animation: gameOverAnimation 4s infinite;
+   }
+
 #buttons {
     margin: auto;
     top: 50%;
 }
 
-button,
-button::after {
- padding: 16px 20px;
- font-size: 18px;
- background: linear-gradient(45deg, transparent 5%, rgb(63, 53, 124) 5%);
- border: 0;
- color: #fff;
- letter-spacing: 3px;
- line-height: 1;
- box-shadow: 6px 0px 0px #00e6f6;
- outline: transparent;
- position: relative;
-}
-
-button::after {
- --slice-0: inset(50% 50% 50% 50%);
- --slice-1: inset(80% -6px 0 0);
- --slice-2: inset(50% -6px 30% 0);
- --slice-3: inset(10% -6px 85% 0);
- --slice-4: inset(40% -6px 43% 0);
- --slice-5: inset(80% -6px 5% 0);
- content: "HOVER ME";
- display: block;
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, rgb(63, 53, 124) 5%);
- text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
- clip-path: var(--slice-0);
-}
-
-button:hover::after {
- animation: 1s glitch;
- animation-timing-function: steps(2, end);
-}
+button {
+    --green: #1BFD9C;
+    font-size: 20px;
+    padding: 0.7em 2.7em;
+    letter-spacing: 0.06em;
+    position: relative;
+    font-family: 'Londrina Shadow', cursive;
+    border-radius: 0.6em;
+    overflow: hidden;
+    transition: all 0.3s;
+    line-height: 1.4em;
+    border: 2px solid var(--green);
+    background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+    color: var(--green);
+    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+    cursor: pointer;
+   }
+   
+   button:hover {
+    color: #82ffc9;
+    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+   }
+   
+   button:before {
+    content: "";
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform .4s ease-in-out;
+    background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+   }
+   
+   button:hover:before {
+    transform: translateX(15em);
+   }
 
 #game {
     margin: auto;
     background: url(/pics/spaceback.jpg);
     animation: animateBack 3s steps(100) infinite;
-    border: 30px solid rgb(63, 53, 124);
     border-radius: 30px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23), 0 0 5px #aaa inset;
+    border: linear-gradient(145deg, #796487, #665471);
+    box-shadow:  23px 23px 43px #2e2634,
+                 -23px -23px 43px #b494c8;
     width: 1000px;
     height: 670px;
     overflow: hidden;
@@ -107,54 +121,19 @@ button:hover::after {
     height: 170px;
     width: calc(790px / 6);
     background: url(/pics/run.png);
-    left: 10%;
+    left: 100px;
     animation: animateChar 1s steps(6) infinite;
-}   
+}
 
-
-#ufo1 {
+.ufo {
     position: absolute;
     bottom: 240px;
     height: 60px;
     width: 100px;
-    background: url(/pics/ufo1.png);
-    left: -80%;
-    animation: rockAnimation 15s infinite,
-            ufoAnimation 1s infinite;
-}
-
-#ufo2 {
-    position: absolute;
-    bottom: 250px;
-    height: 60px;
-    width: 75px;
-    background: url(/pics/ufo2.png);
-    left: -60%;
-    animation: rockAnimation 25s infinite,
-            ufoAnimation 1s infinite;
-}
-
-#ufo3 {
-    position: absolute;
-    bottom: 350px;
-    height: 30px;
-    width: 50px;
-    background: url(/pics/ufo3.png);
-    left: -50%;
-    animation: rockAnimation 20s infinite,
-            ufoAnimation 2s infinite;
-}
-
-#ufo4 {
-    position: absolute;
-    bottom: 220px;
-    height: 50px;
-    width: 50px;
-    background: url(/pics/ufo4.png);
-    left: -30%;
-    animation: rockAnimation 30s infinite,
-            ufoAnimation 1s infinite;
-}
+    /* background: url(/pics/ufo1.png); */
+    /* left: 1000px; */
+    animation: ufoAnimation 1s infinite;
+ }
 
 
 #rock {
@@ -171,19 +150,17 @@ button:hover::after {
 .bullet {
     width: 60px;
     height: 60px;
-    color: red;
-    bottom: 110px;
-    /* position: absolute; */
-    /* bottom: 110px; */
-    /* left: 0; */
+    /* bottom: 170px; */
+    position: absolute;
+    /* left: 170px; */
     /* background: url(/pics/bullet.png); */
 }
 
-.gameOver {
-    margin: auto;
+
+.restart {
     display: none;
-    height: 300px;
-    animation: ufoAnimation 1s infinite;
+    margin: 100px auto;
+    text-align: center;
 }
 
 
@@ -251,66 +228,17 @@ button:hover::after {
     50% {transform:translateY(10px);}
     100% {transform:translateX(10px);}
 }
+
+@keyframes gameOverAnimation {
+    0% {transform:translateX(80px);}
+    25% {transform:translateY(25px);}
+    50% {transform:translateY(50px);}
+    100% {transform:translateX(80px);}
+}
+
 @keyframes startAnimation {
     0% {transform:translateX(20px);}
     25% {transform:translateY(-10px);}
     50% {transform:translateY(20px);}
     100% {transform:translateX(-10px);}
 }
-
-@keyframes glitch {
-    0% {
-     clip-path: var(--slice-1);
-     transform: translate(-20px, -10px);
-    }
-   
-    10% {
-     clip-path: var(--slice-3);
-     transform: translate(10px, 10px);
-    }
-   
-    20% {
-     clip-path: var(--slice-1);
-     transform: translate(-10px, 10px);
-    }
-   
-    30% {
-     clip-path: var(--slice-3);
-     transform: translate(0px, 5px);
-    }
-   
-    40% {
-     clip-path: var(--slice-2);
-     transform: translate(-5px, 0px);
-    }
-   
-    50% {
-     clip-path: var(--slice-3);
-     transform: translate(5px, 0px);
-    }
-   
-    60% {
-     clip-path: var(--slice-4);
-     transform: translate(5px, 10px);
-    }
-   
-    70% {
-     clip-path: var(--slice-2);
-     transform: translate(-10px, 10px);
-    }
-   
-    80% {
-     clip-path: var(--slice-5);
-     transform: translate(20px, -10px);
-    }
-   
-    90% {
-     clip-path: var(--slice-1);
-     transform: translate(-10px, 0px);
-    }
-   
-    100% {
-     clip-path: var(--slice-1);
-     transform: translate(0);
-    }
-   }
