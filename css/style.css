@@ -1,5 +1,5 @@
 body {
-    background: url(/pics/outerspace-55.gif) no-repeat;
+    background: url(../pics/outerspace-55.gif) no-repeat;
     background-size: cover;
     width: auto;
     height: auto;
@@ -94,7 +94,7 @@ button {
 
 #game {
     margin: auto;
-    background: url(/pics/spaceback.jpg);
+    background: url(../pics/spaceback.jpg);
     animation: animateBack 3s steps(100) infinite;
     border-radius: 30px;
     border: linear-gradient(145deg, #796487, #665471);
@@ -120,7 +120,7 @@ button {
     bottom: 110px;
     height: 170px;
     width: calc(790px / 6);
-    background: url(/pics/run.png);
+    background: url(../pics/run.png);
     left: 100px;
     animation: animateChar 1s steps(6) infinite;
 }
@@ -140,7 +140,7 @@ button {
     position: absolute;
     bottom: 110px;
     left: -10%;
-    background: url(/pics/rock.png);
+    background: url(../pics/rock.png);
     animation: animateRock 1s steps(8) infinite,
                rockAnimation 10s both infinite;
 }

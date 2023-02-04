@@ -175,7 +175,6 @@ function shootingScore() {
     let isGameOver = false;
     function gameOver() {
     let callRock = document.getElementById("rock");
-    let callUfo = document.querySelector(".ufo");
 
       setInterval(function () {
         let charTop = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"));
