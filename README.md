@@ -7,7 +7,11 @@ It is a basic but fun platform game. Game starts after you click on the start bu
 
 Wire Frames
 
-///////////
+![Screenshot 2023-02-03 at 8 37 50 PM](https://user-images.githubusercontent.com/119981069/216740545-f93176ae-9b05-4b88-8913-f6b5c835d5ce.png)
+![Screenshot 2023-02-03 at 8 38 04 PM](https://user-images.githubusercontent.com/119981069/216740551-b6dbb4b8-0fa1-4720-91c5-07b2f3b5db24.png)
+![Screenshot 2023-02-03 at 8 38 45 PM](https://user-images.githubusercontent.com/119981069/216740709-accc9622-64df-4507-aab5-75c3d9f84c80.png)
+![Screenshot 2023-02-03 at 8 38 29 PM](https://user-images.githubusercontent.com/119981069/216740674-61c4b4da-6eed-4b41-8907-037e31c3674a.png)
+
 
 User Stories
 As a player, I would like to jump over the obstacles by using the up arrow key.
