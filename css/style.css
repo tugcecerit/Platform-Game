@@ -130,8 +130,6 @@ button {
     bottom: 240px;
     height: 60px;
     width: 100px;
-    /* background: url(/pics/ufo1.png); */
-    /* left: 1000px; */
     animation: ufoAnimation 1s infinite;
  }
 
@@ -150,12 +148,22 @@ button {
 .bullet {
     width: 60px;
     height: 60px;
-    /* bottom: 170px; */
     position: absolute;
-    /* left: 170px; */
-    /* background: url(/pics/bullet.png); */
 }
 
+.back {
+    position:fixed;
+    top: 10%;
+    right: 10%;
+    display: none;
+}
+
+#htp {
+    margin: 200px auto;
+    text-align: center;
+    position: relative;
+    display: none;
+}
 
 .restart {
     display: none;
@@ -185,13 +193,6 @@ button {
     to {background-position: 640px};
 }
 
-@keyframes animateBird1
-{
-    from
-    {background-position: 0;}
-    to {background-position: 830px};
-}
-
 @keyframes animateBack
 {
     from
@@ -203,23 +204,6 @@ button {
 @keyframes rockAnimation {
     0% {left: 1000px}
     100% {left: -1000px;}    
-}
-
-@keyframes ufo1 {
-    0% {left: 2000px}
-    100% {left: -500px;}    
-}
-@keyframes ufo2 {
-    0% {left: 1000px}
-    100% {left: -1000px;}    
-}
-@keyframes ufo3 {
-    0% {left: 1500px}
-    100% {left: -800px;}    
-}
-@keyframes ufo4 {
-    0% {left: 2500px}
-    100% {left: -1500px;}    
 }
 
 @keyframes ufoAnimation {
@@ -234,11 +218,4 @@ button {
     25% {transform:translateY(25px);}
     50% {transform:translateY(50px);}
     100% {transform:translateX(80px);}
-}
-
-@keyframes startAnimation {
-    0% {transform:translateX(20px);}
-    25% {transform:translateY(-10px);}
-    50% {transform:translateY(20px);}
-    100% {transform:translateX(-10px);}
 }

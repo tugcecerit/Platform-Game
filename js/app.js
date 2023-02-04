@@ -6,10 +6,12 @@ let button3 = document.querySelector('.restart');
 let callGame = document.getElementById("game");
 let gameOverPic = document.querySelector(".gameOver");
 let jumpAudio = document.getElementById("jump audio");
+let shootAudio = document.getElementById("shoot");
 let nameOfTheGame = document.getElementById("gameName")
 let gameOverAudio = document.getElementById("game over")
 let scoreShow = document.querySelector(".score")
-
+let howToPlay = document.querySelector("#htp")
+let backButton = document.querySelector(".back")
 
 button1.addEventListener("click", (e) => {
     e.preventDefault();
@@ -25,6 +27,19 @@ button1.addEventListener("click", (e) => {
     moveUfo();
     gameOver();
     runningScore();
+});
+button2.addEventListener("click", (e) => {
+    e.preventDefault();
+    button1.remove();
+    button2.remove();
+    nameOfTheGame.remove()
+    howToPlay.style.display = "block"
+    backButton.style.display = "block"
+});
+
+backButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.reload()
 });
 
 function jump() {
@@ -53,6 +68,7 @@ function control(e) {
     }
     if (e.key === (" ")) {
         createBullet()
+        shootAudio.play()
     }
 }
 
@@ -78,7 +94,7 @@ function shootingScore() {
     document.querySelector("#score").innerHTML = score;
 }
 
-    const ufoImages = ["pics/ufo1.png", "pics/ufo2.png"]
+    const ufoImages = ["pics/ufo1.png", "pics/ufo2.png", "pics/ufo3.png"]
 
     function createUfo() {
         let createUfos = setInterval(() => {
@@ -90,10 +106,17 @@ function shootingScore() {
         newUfo.style.bottom = `${Math.floor(Math.random() * 200) + 130}px`
         callGame.appendChild(newUfo)
         moveUfo(newUfo)
+        if (isGameOver === true) {
+            clearInterval(createUfos)
+        }
     },7000)
     }
+    
 
     function moveUfo(ufo) {
+        if (!(ufo instanceof Element)) {
+            return;
+        }
         let moveUfoInterval = setInterval(() => {
             let xPosition = parseInt(window.getComputedStyle(ufo).getPropertyValue("left"))
             if(xPosition <= -10) {
@@ -137,8 +160,6 @@ function shootingScore() {
         bulletBound.bottom <= ufoBound.bottom && 
         bulletBound.right <= ufoBound.right && 
         bulletBound.top <= ufoBound.top) {
-
-
         ufo.parentElement.removeChild(ufo);
         shootingScore();
     }}
@@ -159,9 +180,8 @@ function shootingScore() {
       setInterval(function () {
         let charTop = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"));
         let rockLeft = parseInt(window.getComputedStyle(callRock).getPropertyValue("left"));
-        let ufoLeft = parseInt(window.getComputedStyle(callUfo).getPropertyValue("left"));
-      
-      if(rockLeft < 190 && rockLeft > 10 && charTop >= 350 || ufoLeft < 150 && ufoLeft > 10 && charTop > 100)
+
+      if(rockLeft < 190 && rockLeft > 10 && charTop >= 350)
         gameOverPic.style.display = "block",
         callGame.style.display = "none",
         nameOfTheGame.style.display = "none",
