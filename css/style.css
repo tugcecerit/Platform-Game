@@ -49,6 +49,19 @@ h3 {
     animation: gameOverAnimation 4s infinite;
    }
 
+   .youWin {
+    color: #1BFD9C;
+    font-family: 'Londrina Shadow', cursive;
+    font-size: 120px;
+    margin: 200px auto;
+    text-align: center;
+    letter-spacing: 1.1em;
+    position: relative;
+    line-height: 1.5em;
+    display: none;
+    animation: gameOverAnimation 4s infinite;
+   }
+
 #buttons {
     margin: auto;
     top: 50%;
@@ -110,6 +123,13 @@ button {
 .score {
     position: fixed;
     margin: 100px;
+    display: none;
+    font-size: 36px;
+    animation: none;
+}
+.ufoShot {
+    position: fixed;
+    margin: 145px;
     display: none;
     font-size: 36px;
     animation: none;

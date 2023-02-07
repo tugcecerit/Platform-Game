@@ -5,11 +5,14 @@ let button2 = document.querySelector('.htp');
 let button3 = document.querySelector('.restart');
 let callGame = document.getElementById("game");
 let gameOverPic = document.querySelector(".gameOver");
+let winPic= document.querySelector(".youWin");
 let jumpAudio = document.getElementById("jump audio");
 let shootAudio = document.getElementById("shoot");
+let winAudio = document.getElementById("win sound");
 let nameOfTheGame = document.getElementById("gameName")
 let gameOverAudio = document.getElementById("game over")
 let scoreShow = document.querySelector(".score")
+let ufoShow = document.querySelector(".ufoShot")
 let howToPlay = document.querySelector("#htp")
 let backButton = document.querySelector(".back")
 
@@ -23,10 +26,12 @@ button1.addEventListener("click", (e) => {
     gameOverPic.style.display = "none";
     document.body.style.backgroundColor = "black";
     scoreShow.style.display = "block";
+    ufoShow.style.display = "block";
     createUfo();
     moveUfo();
     gameOver();
     runningScore();
+    win();
 });
 button2.addEventListener("click", (e) => {
     e.preventDefault();
@@ -74,12 +79,13 @@ function control(e) {
 
 document.addEventListener("keydown", control)
 
+let ufoDie = 0;
 let score = 0
 function runningScore() {
     let scoreId = setInterval(() => {
     score++     
     document.querySelector("#score").innerHTML = score;
-    if (isGameOver === true) {
+    if (isGameOver === true || isWin === true) {
     clearInterval (scoreId)}
         },300)
     }
@@ -90,9 +96,14 @@ function jumpingScore() {
 }
 
 function shootingScore() {
-    score += 250
-    document.querySelector("#score").innerHTML = score;
-}
+    if (!isGameOver && !isWin) {
+      ufoDie++;
+      score += 250;
+      document.querySelector("#score").innerHTML = score;
+      document.querySelector("#ufoShot").innerHTML = ufoDie;
+    }
+  }
+  
 
     const ufoImages = ["pics/ufo1.png", "pics/ufo2.png", "pics/ufo3.png"]
 
@@ -106,7 +117,7 @@ function shootingScore() {
         newUfo.style.bottom = `${Math.floor(Math.random() * 200) + 130}px`
         callGame.appendChild(newUfo)
         moveUfo(newUfo)
-        if (isGameOver === true) {
+        if (isGameOver === true || isWin === true) {
             clearInterval(createUfos)
         }
     },7000)
@@ -155,12 +166,13 @@ function shootingScore() {
 
         let ufoBound = ufo.getBoundingClientRect()
         let bulletBound = bullet.getBoundingClientRect()
+        
 
         if(bulletBound.left >= ufoBound.left && 
         bulletBound.bottom <= ufoBound.bottom && 
         bulletBound.right <= ufoBound.right && 
         bulletBound.top <= ufoBound.top) {
-        ufo.parentElement.removeChild(ufo);
+        ufo.parentElement.removeChild(ufo),
         shootingScore();
     }}
         if (xPosition >= 1000) {
@@ -172,6 +184,26 @@ function shootingScore() {
     }, 10)
 } 
 
+let isWin = false;
+function win() {
+    setInterval(function () {
+    if (isGameOver === false && ufoDie === 10 || isGameOver === false && score >= 3000)
+    winPic.style.display = "block",
+    callGame.style.display = "none",
+    nameOfTheGame.style.display = "none",
+    scoreShow.style.fontSize = "80px",
+    scoreShow.style.position = "relative",
+    scoreShow.style.textAlign = "center",
+    ufoShow.style.right = "none",
+    ufoShow.style.fontSize = "80px",
+    ufoShow.style.margin = "150px auto",
+    ufoShow.style.position = "relative",
+    ufoShow.style.textAlign = "center",
+    button3.style.display = "block",
+    isWin = true,
+    winAudio.play()},10);
+}
+
     let isGameOver = false;
     function gameOver() {
     let callRock = document.getElementById("rock");
@@ -180,18 +212,23 @@ function shootingScore() {
         let charTop = parseInt(window.getComputedStyle(callChar).getPropertyValue("top"));
         let rockLeft = parseInt(window.getComputedStyle(callRock).getPropertyValue("left"));
 
-      if(rockLeft < 190 && rockLeft > 10 && charTop >= 350)
+      if(isWin === false && rockLeft < 190 && rockLeft > 10 && charTop >= 350)
         gameOverPic.style.display = "block",
         callGame.style.display = "none",
         nameOfTheGame.style.display = "none",
         scoreShow.style.fontSize = "80px",
         scoreShow.style.position = "relative",
         scoreShow.style.textAlign = "center",
+        ufoShow.style.fontSize = "80px",
+        ufoShow.style.margin = "150px auto",
+        ufoShow.style.position = "relative",
+        ufoShow.style.textAlign = "center",
         button3.style.display = "block",
         isGameOver = true,
         gameOverAudio.play()
-      },10);
-    }  
+        },10);
+      }
+    
     
     button3.addEventListener("click",function restart() {
         window.location.reload()
