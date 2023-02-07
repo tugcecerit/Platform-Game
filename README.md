@@ -1,9 +1,9 @@
 # Platform-Game
 Project Choice
-Jumping and Shooting Platform Game
+Jumping and Shooting Platform Game (Space Knight)
 
 Project Description
-It is a basic but fun platform game. Game starts after you click on the start button, the character starts running automatically. Obstacles are coming closer and character jumps over the obstacles and shoots the ufos coming from the other side. If the player hits the any of the obstacles, game is over. Try to shoot the ufos, jump over the rocks and get more points. The aim of the game is to get more point.
+It is a basic but fun platform game. Game starts after player clicks on the start button, the character starts running automatically. Rocks are coming closer and player can jump over by pressing up arrow and shoot the ufos coming from the other side by pressing space bar. If the player hits any of the rocks, game is over. If the player shoots 10 ufos or reaches to 3000 points, player wins. Try to shoot 10 ulos, jump over the rocks and get more points.The aim of the game is to get more points or shoot all ufos..
 
 Wire Frames
 
@@ -16,7 +16,7 @@ Wire Frames
 User Stories
 As a player, I would like to jump over the obstacles by using the up arrow key.
 As a player, I would like to shoot the ufos by using the space key to get more points.
-As a player, I would like try to hit the highest score to break the highest score record.
+As a player, I would like try to hit 3000 points or shoot 10 ufos.
 
 MVP Goals
 Adding a moving background to seem the character running.

@@ -194,7 +194,6 @@ function win() {
     scoreShow.style.fontSize = "80px",
     scoreShow.style.position = "relative",
     scoreShow.style.textAlign = "center",
-    ufoShow.style.right = "none",
     ufoShow.style.fontSize = "80px",
     ufoShow.style.margin = "150px auto",
     ufoShow.style.position = "relative",
