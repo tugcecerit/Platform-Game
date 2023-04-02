@@ -18,21 +18,21 @@ It is a basic but fun platform game. In this planet, there is no gravity. Game s
 
 
 ## User Stories
-As a player, I would like to jump over the obstacles by using the up arrow key.
-As a player, I would like to shoot the ufos by using the space key to get more points.
-As a player, I would like try to hit 3000 points or shoot 10 ufos.
+- As a player, I would like to jump over the obstacles by using the up arrow key.
+- As a player, I would like to shoot the ufos by using the space key to get more points.
+- As a player, I would like try to hit 3000 points or shoot 10 ufos.
 
 ## MVP Goals
-Adding a moving background to seem the character running.
-Making the character seem jumping and shooting.
-Removing the ufos when they are shot.
-Showing the score which character earns while running, jumping and shooting.
-Adding start and how to play button.
-Adding restart button at the and able to restart it.
+- Adding a moving background to seem the character running.
+- Making the character seem jumping and shooting.
+- Removing the ufos when they are shot.
+- Showing the score which character earns while running, jumping and shooting.
+- Adding start and how to play button.
+- Adding restart button at the and able to restart it.
 
 ## Stretch Goals
-Animation
-Moving background
-Effective keyboard usage
-Show Score
-Sound effect
+- Animation
+- Moving background
+- Effective keyboard usage
+- Show Score
+- Sound effect
