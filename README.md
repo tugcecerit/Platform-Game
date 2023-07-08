@@ -2,6 +2,9 @@
 ## Project Choice
 Jumping-Shooting Platform Game (Space Knight)
 
+## Website
+https://platform-game-space-knight.vercel.app/
+
 ## Project Description
 It is a basic but fun platform game. In this planet, there is no gravity. Game starts after player clicks on the start button, the character starts running automatically. Rocks are coming closer and player can jump over by pressing up arrow and shoot the ufos coming from the other side by pressing space bar. If the player hits any of the rocks, game is over. If the player shoots 10 ufos or reaches to 3000 points, player wins. Try to shoot 10 ulos, jump over the rocks and get more points.The aim of the game is to get more points or shoot all ufos..
 
